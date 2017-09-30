@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <ul>
+    <li>Apple</li>
+    <li>Bpple</li>
+    <li>Cpple</li>
+    <li>Dpple</li>
+    <li>Epple</li>
+  </ul>
+  <script>
+    var lis = document.getElementsByTagName('li');
+    for (var i = 0; i < lis.length; i++) {
+      lis[i].onclick = function () {
+        // console.dir(function () {
+        //   console.log(i)
+        // })
+        return function(){
+          console.log(i)
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>
