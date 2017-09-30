@@ -62,7 +62,8 @@ for(var i = 0; i < 5; i++){
 // 上面注释之间的代码清晰展示了闭包的存在 在 [[Scope]] 里面会有每次函数调用时候
 // i 的引用
 ```
-## DOM 相关的
+## DOM 操作里面的闭包
+### 我们希望点击每个按钮的时候出现对应的序数
 ``` html
 <ul>
   <li>Apple</li>
@@ -79,6 +80,19 @@ for(var i = 0; i < lis.length; i++){
   lis[i].onclick = function(){
     alert(i)
   }
+}
+// 但是现在的代码是有问题的 点击每个按钮(li)的时候出现的全是 5
+// 原因的话跟桑面的一样 我们的点击操作一定是发生在 for 循环之后的
+// 我们需要一个闭包 保持对每次 i 的引用
+// 方法如下面的代码展示
+```
+``` javascript
+for(var i = 0; i < lis.length; i++){
+  (function(i){
+    lis[i].onclick = function(){
+      alert(i)
+    }
+  })(i)
 }
 ```
 

@@ -19,14 +19,11 @@
   <script>
     var lis = document.getElementsByTagName('li');
     for (var i = 0; i < lis.length; i++) {
-      lis[i].onclick = function () {
-        // console.dir(function () {
-        //   console.log(i)
-        // })
-        return function(){
-          console.log(i)
+      (function (i) {
+        lis[i].onclick = function () {
+          alert(i);
         }
-      }
+      })(i)
     }
   </script>
 </body>
