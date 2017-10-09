@@ -33,7 +33,6 @@ console.dir(foo())
   - 另外一种是 `closure` 就是我们说的闭包了 所以闭包是一个作用域的概念
   - `closure` 里面有个值 `a` 处于 `closure`
   - 之所以没有 `b` 是因为我们返回的函数里面没有涉及 `b` 其实 `b` 已经被销毁了
--->
 
 ``` javascript
 for(var i = 0; i < 5; i++){
@@ -41,12 +40,14 @@ for(var i = 0; i < 5; i++){
     console.log(i)
   }, 1000 * i)
 }
+
 // 理想状态是每隔一秒依次打印出 0 1 2 3 4；
 // 但是打印结果是 5 次 5 打印 5 次很好理解 但是打印出的全是 5 令人费解
 // 原因: i 等于 5 是循环结束的条件 setTimeout 里面的函数每次引用的是结束之后的 i
 // 那么如何让 i 保留下来呢
 // 可以用闭包 给 setTimeout 加一层函数
 ```
+
 ``` javascript
 for(var i = 0; i < 5; i++){
   (function(i){
@@ -58,21 +59,32 @@ for(var i = 0; i < 5; i++){
 // 立即执行函数相当于外层函数 里面的匿名函数相当于内层函数 因为闭包的存在
 // 内层函数能访问到立即执行函数携带的参数 i
 ```
+### 其他的解决方式
+
+用闭包的方法可以解决上述的问题 但是太过于繁琐 ES6(ES2015)给我们提供了新的方法 并且极其的简单 只需要把 `var` 改成 `let` 就好了
 ``` javascript
-for(var i = 0; i < 5; i++){
-  (function(i){
-    setTimeout(function(){
-      console.log(i)
-    }, 1000 * i)
-  })(i)
+for(let i = 0; i < 5;i++){
+  setTimeout(function() {
+    console.log(i)
+  }, 1000 * i)
 }
-// 上面注释之间的代码清晰展示了闭包的存在 在 [[Scope]] 里面会有每次函数调用时候
-// i 的引用
 ```
+简答的来说就是 `let` 创造了一个块级作用域 这一点可通过 `console.dir` 来证明 同样是在 [[Scope]] 属性里面找到
+
+``` javascript
+for(let i = 0; i < 5; i++){
+  function doit(){
+    return i;
+  }
+  console.dir(doit, i)
+}
+```
+<img src="./images/JavaScript_Closure_let.png" />
+
 ## `for` 循环里面的闭包的一般性测试
 
 ``` javascript
-for(var i = o; i < 5; i++){
+for(var i = 0; i < 5; i++){
   (function(i){
     function doit(){
       return i;
