@@ -79,7 +79,7 @@ for(let i = 0; i < 5; i++){
   console.dir(doit, i)
 }
 ```
-<img src="http://os7lfp1fn.bkt.clouddn.com/JavaScript_Closure_let.png" />
+<img src="./images/JavaScript_Closure_let.png" />
 
 ## `for` 循环里面的闭包的一般性测试
 
@@ -142,4 +142,4 @@ for(var i = 0; i < lis.length; i++){
   })(i)
 }
 ```
-<img style="width: 443px; height: 489px;" src="http://os7lfp1fn.bkt.clouddn.com/JavaScript_Closure.png" />
+<img style="width: 443px; height: 489px;" src="./images/JavaScript_Closure.png" />
