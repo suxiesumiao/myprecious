@@ -79,4 +79,16 @@ foo(); // 会报错
  zhu.say.call(zhen, 'name', 'age')
  zhu.say.apply(zhen, {0: '姓名', 1: '年龄', length: 2});
  ```
-
+### `bind`
+``` javascript
+var name = 'global'
+var person = {
+  name: 'local',
+  sayName: function() {
+    console.log(this.name)
+  }
+}
+var sayNameNew = person.sayName
+var boundedFunc = sayNameNew.bind(person)
+boundedFunc() // 'local'
+```
