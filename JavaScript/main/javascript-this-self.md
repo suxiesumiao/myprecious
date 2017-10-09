@@ -18,7 +18,7 @@ temp() // 3 - 'global'
  - 1 写在全局里面的 `this` 就是 `window`
  - 2 `this` 存在于某个函数里面谁调用的就是谁 这里是 `person` 在调用 `this` 指代 `person`
  - 3 至于第三个 `temp` 是由 `person.sayName` 赋值过来的 其实就是 `sayName` 这个函数 该函数存在于全局作用域调用的时候其实是 `window.temp()` 所以 `this` 指向的是 `window`
- <img src="./images/JavaScript_this.png" />
+ <img src="http://os7lfp1fn.bkt.clouddn.com/JavaScript_this.png" />
 
 ## `this` 的指向涉及到函数的调用 不同的调用方式得到的 `this` 具体的值也是不一样的
 
@@ -93,7 +93,7 @@ var sayNameNew = person.sayName
 var boundedFunc = sayNameNew.bind(person)
 boundedFunc() // 'local'
 ```
-<img src="./images/JavaScript_bind_this.png" />
+<img src="http://os7lfp1fn.bkt.clouddn.com/JavaScript_bind_this.png" />
 
 #### 绑定参数
 
@@ -110,4 +110,4 @@ var leadingThirtysevenList = list.bind(undefined, 37);
 var list2 = leadingThirtysevenList(); // [37]
 var list3 = leadingThirtysevenList(1, 2, 3); // [37, 1, 2, 3]
 ```
-<img src="./images/JavaScript_bind_args.png" />
+<img src="http://os7lfp1fn.bkt.clouddn.com/JavaScript_bind_args.png" />
