@@ -1,4 +1,4 @@
-## this
+<h1 style="color: tomato; text-align: center;">this</h1>
 从一道题目开始
 
 ```javascript
@@ -22,7 +22,7 @@ temp() // 3 - 'global'
 
 ## `this` 的指向涉及到函数的调用 不同的调用方式得到的 `this` 具体的值也是不一样的
 
-### 作为函数调用(普通调用) `this` 指代 `window`(非严格模式下) 或者 `undefined` (严格模式下)
+### 1 - 作为函数调用(普通调用) `this` 指代 `window`(非严格模式下) 或者 `undefined` (严格模式下)
 ``` javascript
  // 非严格模式下
 var name = 'global';
@@ -47,8 +47,8 @@ function foo(){
 };
 foo(); // 会报错
  ```
- ### 作为方法调用(函数属于哪一个对象就称为哪一个对象的方法)
- ### 面向对象的时候
+ ### 2 - 作为方法调用(函数属于哪一个对象就称为哪一个对象的方法)
+ ### 3 - 由构造函数构造出来的对象
  ``` javascript
  function Person(name, age, say){
    this.name = name;
@@ -61,7 +61,7 @@ foo(); // 会报错
  p.say()
  ```
 
- ### `apply` `call`
+ ### 4 - `apply` `call`
  ``` javascript
  var zhu = {
    name: 'zhu',
@@ -75,11 +75,12 @@ foo(); // 会报错
    name: 'zhen',
    age: 15,
  }
- zhu.say.apply(zhen, ['name', 'age'])
- zhu.say.call(zhen, 'name', 'age')
+ zhu.say.apply(zhen, ['姓名', '年龄'])
+ zhu.say.call(zhen, '姓名', '年龄')
  zhu.say.apply(zhen, {0: '姓名', 1: '年龄', length: 2});
  ```
-### `bind`
+### 5 - [bind](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/bind)
+#### 绑定 `this`
 ``` javascript
 var name = 'global'
 var person = {
@@ -92,3 +93,21 @@ var sayNameNew = person.sayName
 var boundedFunc = sayNameNew.bind(person)
 boundedFunc() // 'local'
 ```
+<img src="./images/JavaScript_bind_this.png" />
+
+#### 绑定参数
+
+``` javascript
+function list() {
+  return Array.prototype.slice.call(arguments);
+}
+
+var list1 = list(1, 2, 3); // [1, 2, 3]
+
+// Create a function with a preset leading argument
+var leadingThirtysevenList = list.bind(undefined, 37);
+
+var list2 = leadingThirtysevenList(); // [37]
+var list3 = leadingThirtysevenList(1, 2, 3); // [37, 1, 2, 3]
+```
+<img src="./images/JavaScript_bind_args.png" />
