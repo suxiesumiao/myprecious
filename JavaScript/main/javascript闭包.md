@@ -61,15 +61,15 @@ i++;
 那么我们出问题的代码等价于下面的代码, 你肯定没有疑问
 ``` javascript
 var i = 0;
-setTimeout(function(){ console.log(i) }, 0);
+setTimeout(function(){ console.log(i) }, 1000 * i);
 i++;
-setTimeout(function(){ console.log(i) }, 1000);
+setTimeout(function(){ console.log(i) }, 1000 * i);
 i++;
-setTimeout(function(){ console.log(i) }, 2000);
+setTimeout(function(){ console.log(i) }, 1000 * i);
 i++;
-setTimeout(function(){ console.log(i) }, 3000);
+setTimeout(function(){ console.log(i) }, 1000 * i);
 i++;
-setTimeout(function(){ console.log(i) }, 4000);
+setTimeout(function(){ console.log(i) }, 1000 * i);
 i++;
 ```
 答案全是 `5` `setTimeout` 让特定的代码在某个时间段之后排队运行注定了只能在 `i` 变化之后执行 此时的 `i` 是最后的 `i`
