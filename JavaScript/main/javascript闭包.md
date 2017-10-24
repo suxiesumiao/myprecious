@@ -71,9 +71,11 @@ setTimeout(function(){ console.log(i) }, 1000 * i);
 i++;
 setTimeout(function(){ console.log(i) }, 1000 * i);
 i++;
+
 ```
-答案全是 `5` `setTimeout` 让特定的代码在某个时间段之后排队运行注定了只能在 `i` 变化之后执行 此时的 `i` 是最后的 `i`
-需要注意的一点是 `1000 * i` 里面的 `i` 是可以被正常访问的 不能正常访问的是被 `setTimeout` 延迟执行的代码里面的 `i`
+- 答案全是 `5` `setTimeout` 让特定的代码在某个时间段之后排队运行注定了只能在 `i` 变化之后执行 此时的 `i` 是最后的 `i`
+
+- 需要注意的一点是 `1000 * i` 里面的 `i` 是可以被正常访问的 不能正常访问的是被 `setTimeout` 延迟执行的代码里面的 `i`
 
 解决方法如下:  
 
@@ -169,6 +171,7 @@ for(var i = 0; i < lis.length; i++){
     alert(i)
   }
 }
+
 // 但是现在的代码是有问题的 点击每个按钮(li)的时候出现的全是 5
 // 原因的话跟桑面的一样 我们的点击操作一定是发生在 for 循环之后的
 // 我们需要一个闭包 保持对每次 i 的引用
@@ -199,7 +202,7 @@ for(var i = 0; i < lis.length; i++){
 ## 模拟私有变量
 
 ``` javascript
-(function(){
+var Circle = (function(){
   // 私有变量 函数
   var privateVar = 12
   function privateFunc() {
@@ -209,5 +212,5 @@ for(var i = 0; i < lis.length; i++){
   MyObj = function(){ /**/ }
   // 公有方法
   MyObj。prototype.pubMethod = function(){ /**/ }
-})()
+})();
 ```
