@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>em</title>
+  <style>
+
+    .p1 {
+      font-size: 16px;
+      line-height: 32px;
+    }
+    
+    .s1 {
+      font-size: 2em; /* 32px = 16px * 2 line-height 会继承父代 */
+    }
+    
+    .s2 {
+      font-size: 2em; /* 32px = 16px * 2 */
+      line-height: 2em; /* 64px = 32px * 2     64 就是自己的 font-size */
+    }
+    
+    .p2 {
+      font-size: 16px;
+      line-height: 2; /* 32px = 16px * 2 */
+    }
+    
+    .s5 {
+      font-size: 2em; /* 32px = 16px * 2 line-height: 2 === 64px 会继承父代的写法 */
+      /* line-height 的单位是 纯数字的话 是相对于 font-size 来计算的 */
+    }
+    
+    .s6 {
+      font-size: 2em; /* 32px = 16px * 2 */
+      line-height: 2em; /* 64px = 32px * 2 */
+      /*line-height: 2;  效果同上*/
+    }
+    
+    .p3{
+      font-size: 16px;
+      line-height: 2em; /* 32 */
+    }
+    .s7{
+      font-size: 3em; /* 48px = 16px * 3 */
+      height: 3em; /* 144px = 48px * 3 */
+      /* line-height 32 */
+
+      /*line-height: 2em;  96  显示的写出来 虽然跟继承一样都是 2 em 但是仍然会自己计算一遍*/
+    }
+
+    .s8{
+      font-size: 2em; /* 32 */
+      line-height: 2em; /* 64 */
+    }
+
+    .p4{
+      font-size: 16px;
+      line-height: 2em;/* 32 */
+    }
+
+    .s9{
+      font-size: 17px;
+      height: 3em; /* 51px = 17px * 3 */
+    }
+    [class^=s]{
+      color: aqua;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="p1">
+    <div class="s1">Nothing is impossible</div>
+    <div class="s2">Nothing is impossible</div>
+  </div>
+  <div class="p2">
+    <div class="s5">Nothing is impossible</div>
+    <div class="s6">Nothing is impossible</div>
+  </div>
+  <div class="p3">
+    <div class="s7">Nothing is impossible</div>
+    <div class="s8">Nothing is impossible</div>
+  </div>
+  <div class="p4">
+    <div class="s9">Nothing is impossible</div>
+    <div class="s10">Nothing is impossible</div>
+  </div>
+</body>
+
+</html>

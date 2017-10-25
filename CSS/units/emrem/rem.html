@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>rem</title>
+  <style>
+    html {
+      font-size: 2rem;
+      /* 32px = 16px * 2 因为默认是 16px */
+    }
+    
+    header {
+      /* 现在的 font-size 是继承过来的 32 */
+      line-height: 2em;
+      /* 64 */
+    }
+    
+    p {
+      color: aqua;
+      font-size: 2rem;
+      /* 64 = 32 * 2 */
+      line-height: 2em;
+      /* 128 */
+      /* 不显示的写出来 line-height 是 64 是继承过来的 */
+      /* 64px = 32px * 2 这里出现的 32 是 hmtl 设定的 32 */
+      /* 如果不对 p 元素进行 font-size 设定 那么会继承 html 里面经过计算之后的值 也就是 32px 即对 p 来说的初始值 */
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <p>I love CHINA more than ever</p>
+  </header>
+</body>
+
+</html>
