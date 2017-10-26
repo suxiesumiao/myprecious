@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>rem 布局方案</title>
+  <style>
+    html {
+      font-size: 32px;
+      background-color: #191717;
+    }
+    
+    body {
+      font-size: 16px;
+      /* 修正字体的大小 */
+      margin: auto;
+      padding: 0;
+      width: 10rem;
+      /* 防止页面过于宽大 */
+    }
+    
+    h1 {
+      color: steelblue;
+      height: 3rem;
+      /* 非 font-size属相用 rem */
+      font-size: 1.2em;
+      /* font-size 属相用 em */
+    }
+    /* js 回退 */
+    
+    @media screen and (min-width: 321px) {
+      html {
+        font-size: 32px;
+      }
+      body {
+        font-size: 16px;
+      }
+    }
+    
+    @media screen and (min-width: 481px) and (max-width: 640px) {
+      html {
+        font-size: 48px;
+      }
+      body {
+        font-size: 18px;
+      }
+    }
+    
+    @media screen and (min-width: 641px) {
+      html {
+        font-size: 64px;
+      }
+      body {
+        font-size: 20px;
+      }
+    }
+    
+    noscript {
+      display: block;
+      border: 1px dashed aqua;
+      background-color: rgba(0, 255, 255, 0.3);
+      color: tomato;
+    }
+  </style>
+</head>
+
+<body>
+  <noscript>
+    请开启 JavaScript
+  </noscript>
+  <h1 id="point">To be or not to be...It's a question</h1>
+  <script src="script_rem.js"></script>
+  <script>
+    let point = document.getElementById("point");
+    point.addEventListener("mouseenter", function () {
+      let font_size = window.getComputedStyle(point, null).getPropertyValue("font-size");
+      point.setAttribute("title", `font-size: ${font_size}`);
+    }, false);
+  </script>
+</body>
+
+</html>

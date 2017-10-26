@@ -7,64 +7,78 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>em</title>
   <style>
-
     .p1 {
       font-size: 16px;
       line-height: 32px;
     }
     
     .s1 {
-      font-size: 2em; /* 32px = 16px * 2 line-height 会继承父代 */
+      font-size: 2em;
+      /* 32px = 16px * 2 line-height 会继承父代 */
     }
     
     .s2 {
-      font-size: 2em; /* 32px = 16px * 2 */
-      line-height: 2em; /* 64px = 32px * 2     64 就是自己的 font-size */
+      font-size: 2em;
+      /* 32px = 16px * 2 */
+      line-height: 2em;
+      /* 64px = 32px * 2     64 就是自己的 font-size */
     }
     
     .p2 {
       font-size: 16px;
-      line-height: 2; /* 32px = 16px * 2 */
+      line-height: 2;
+      /* 32px = 16px * 2 */
     }
     
     .s5 {
-      font-size: 2em; /* 32px = 16px * 2 line-height: 2 === 64px 会继承父代的写法 */
+      font-size: 2em;
+      /* 32px = 16px * 2 line-height: 2 === 64px 会继承父代的写法 */
       /* line-height 的单位是 纯数字的话 是相对于 font-size 来计算的 */
     }
     
     .s6 {
-      font-size: 2em; /* 32px = 16px * 2 */
-      line-height: 2em; /* 64px = 32px * 2 */
+      font-size: 2em;
+      /* 32px = 16px * 2 */
+      line-height: 2em;
+      /* 64px = 32px * 2 */
       /*line-height: 2;  效果同上*/
     }
     
-    .p3{
+    .p3 {
       font-size: 16px;
-      line-height: 2em; /* 32 */
+      line-height: 2em;
+      /* 32 */
     }
-    .s7{
-      font-size: 3em; /* 48px = 16px * 3 */
-      height: 3em; /* 144px = 48px * 3 */
+    
+    .s7 {
+      font-size: 3em;
+      /* 48px = 16px * 3 */
+      height: 3em;
+      /* 144px = 48px * 3 */
       /* line-height 32 */
-
       /*line-height: 2em;  96  显示的写出来 虽然跟继承一样都是 2 em 但是仍然会自己计算一遍*/
     }
-
-    .s8{
-      font-size: 2em; /* 32 */
-      line-height: 2em; /* 64 */
+    
+    .s8 {
+      font-size: 2em;
+      /* 32 */
+      line-height: 2em;
+      /* 64 */
     }
-
-    .p4{
+    
+    .p4 {
       font-size: 16px;
-      line-height: 2em;/* 32 */
+      line-height: 2em;
+      /* 32 */
     }
-
-    .s9{
+    
+    .s9 {
       font-size: 17px;
-      height: 3em; /* 51px = 17px * 3 */
+      height: 3em;
+      /* 51px = 17px * 3 */
     }
-    [class^=s]{
+    
+    [class^=s] {
       color: aqua;
     }
   </style>
