@@ -1,4 +1,5 @@
-<h1 style="color: tomato; text-align: center;">this</h1>
+# **this**
+
 从一道题目开始
 
 ```javascript
@@ -111,4 +112,115 @@ var list2 = leadingThirtysevenList(); // [37]
 var list3 = leadingThirtysevenList(1, 2, 3); // [37, 1, 2, 3]
 ```
 <img src="./images/JavaScript_bind_args.png" />
- 
+
+## 箭头函数中的 `this`
+
+#### 箭头函数没有自己的 `this`, 它的 `this` 是继承而来; 默认指向在定义它时,它所处的对象(宿主对象),而不是执行时的对象, 定义它的时候,可能环境是 `window` 即是继承上下文的
+
+详解见 [MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions#像方法一样使用箭头函数)
+
+### 其他的测试题目
+
+``` javascript
+var name = 'window'
+
+var person1 = {
+  name: 'person1',
+  show1: function () {
+    console.log(this.name)
+  },
+  show2: () => console.log(this.name), // this is window
+  show3: function () {
+    return function () {
+      console.log(this.name)
+    }
+  },
+  show4: function () {
+    return () => console.log(this.name) // this is person1
+  }
+}
+var person2 = { name: 'person2' }
+
+person1.show1() // 'person1' 方法是 person1 的方法
+person1.show1.call(person2) // 'person2' 方法转化成了 person2 的方法
+
+person1.show2() // 'window' 箭头函数里面的 this 是继承来的 person1 的上文是 window
+person1.show2.call(person2)  // 'window' person2 调用了 person1 的函数 同上
+
+person1.show3()() // 'window'
+person1.show3().call(person2) // 'person2' person1.show3() 结果是一个函数 该函数被 person2 调用
+person1.show3.call(person2)() // 'window' person2 调用的是 person1.show3 这个函数 而不是其返回的结果
+
+person1.show4()() // 'person1' // 此处的 this 穿透了 外层的 function 实际上是 person1
+person1.show4().call(person2) // 'person1' person2 调用的是 person1.show4 的执行结果
+person1.show4.call(person2)() // 'person2' person2 调用的是 person1.show4 那个函数 而不是执行结果
+
+```
+## 混合 `this` 测试
+``` javascript
+var name = 'window';
+var o = {
+    name: 'o',
+    child_1: {
+      name: 'child_1',
+      func: function () {
+        // 由此处的 this 定义
+        return () => { console.log(this.name) }
+      }
+    },
+    child_2: {
+      name: 'child_2',
+      func: () => {
+        // 穿透箭头函数 对象嵌套
+        return () => { console.log(this.name) }
+      }
+    },
+    child_3: {
+      name: 'child_3',
+      func: () => {
+        return function () { console.log(this.name) }
+      }
+    }
+}
+o.child_1.func()(); // 'child_1'
+o.child_2.func()(); // 'window'
+o.child_3.func()(); // 'window'
+```
+## new `this` 测试
+``` javascript
+var name = 'window'
+
+function Person (name) {
+  this.name = name;
+  this.show1 = function () {
+    console.log(this.name)
+  }
+  this.show2 = () => console.log(this.name)
+  this.show3 = function () {
+    return function () {
+      console.log(this.name)
+    }
+  }
+  this.show4 = function () {
+    return () => console.log(this.name)
+  }
+}
+
+var personA = new Person('personA')
+var personB = new Person('personB')
+
+personA.show1() // 'personA'
+personA.show1.call(personB) // 'personB'
+
+personA.show2() // 'perspnA'
+personA.show2.call(personB) // 'personA' 
+
+personA.show3()() // 'window'
+personA.show3().call(personB) // 'personB'
+personA.show3.call(personB)() // 'window'
+
+personA.show4()() // 'personA'
+personA.show4().call(personB) // 'personA'
+personA.show4.call(personB)() // 'personB'
+
+```
